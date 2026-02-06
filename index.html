@@ -13,11 +13,16 @@
     }
 
     header {
-      background: #111;
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-    }
+  background: #111;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+   }
+
 
     header img {
       height: 36px;
@@ -176,6 +181,57 @@ select {
   background: #000;
 }
 
+/* MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+  header {
+    padding: 16px 20px;
+  }
+
+  .hero {
+    height: 55vh;
+    font-size: 28px;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .container {
+    padding: 40px 20px;
+  }
+
+  .card img {
+    height: 280px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+}
+
+.order-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  background: #111;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+.order-btn.active {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.order-btn.active:hover {
+  background: #000;
+}
+
+
+
   </style>
 </head>
 <body>
@@ -202,21 +258,20 @@ select {
     <div class="price">IDR 389.000</div>
 
     <!-- PILIH UKURAN -->
-    <select id="size1">
-      <option value="">Select Size</option>
-      <option>29</option>
-      <option>30</option>
-      <option>31</option>
-      <option>32</option>
-      <option>33</option>
-      <option>34</option>
-    </select>
+    <select id="size1" onchange="enableOrder('size1','btn1')">
+  <option value="">Select Size</option>
+  <option>29</option>
+  <option>30</option>
+  <option>31</option>
+  <option>32</option>
+  <option>33</option>
+  <option>34</option>
+</select>
 
-    <!-- TOMBOL INI TARUH DI SINI -->
-    <button class="order-btn"
-     onclick="order('Signature Chino Pants','size1','IDR 389.000')">
-     Order via WhatsApp
-  </button>
+<button id="btn1" class="order-btn" onclick="order('Signature Chino Pants','size1')" disabled>
+  Order via WhatsApp
+</button>
+
   </div>
 </div>
 
@@ -228,18 +283,18 @@ select {
     <div class="price">IDR 389.000</div>
 
     <!-- PILIH UKURAN -->
-    <select id="size2">
-      <option value="">Select Size</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-    </select>
+    <select id="size2" onchange="enableOrder('size2','btn2')">
+  <option value="">Select Size</option>
+  <option>M</option>
+  <option>L</option>
+  <option>XL</option>
 
-    <!-- TOMBOL INI TARUH DI SINI -->
-    <button class="order-btn"
-  	onclick="order('Executive Formal Pants','size2','IDR 429.000')">
-  	Order via WhatsApp
-  </button>
+</select>
+
+<button id="btn" class="order-btn" onclick="order('Signature Chino Pants','size2')" disabled>
+  Order via WhatsApp
+</button>
+
   </div>
 </div>
   
@@ -260,17 +315,20 @@ select {
   ☎
 </a>
 
-
 <script>
-function order(product, sizeId){
-  const size = document.getElementById(sizeId).value;
-  const phone = '62895338661112';
-  const text = `Hello, I would like to order ${product}, size ${size}`;
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
+function enableOrder(selectId, buttonId) {
+  const select = document.getElementById(selectId);
+  const button = document.getElementById(buttonId);
+
+  if (select.value !== "") {
+    button.disabled = false;
+    button.classList.add("active");
+  } else {
+    button.disabled = true;
+    button.classList.remove("active");
+  }
 }
-</script>
 
-<script>
 function order(product, sizeId, price){
   const size = document.getElementById(sizeId).value;
 
@@ -294,6 +352,8 @@ Thank you.`;
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
 }
 </script>
+
+
 
 </body>
 </html>

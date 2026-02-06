@@ -78,6 +78,16 @@
       margin-bottom: 12px;
     }
 
+     .info select {
+       width: 100%;
+       padding: 12px;
+       margin-bottom: 10px;
+       border-radius: 6px;
+       border: 1px solid #ccc;
+       font-size: 14px;
+}
+
+
     footer {
       background: #111;
       color: #aaa;
@@ -86,6 +96,62 @@
       margin-top: 80px;
       font-size: 13px;
     }
+
+/* ==== TOMBOl TAVEN === */
+     
+  .order-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.order-btn:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.order-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+
+/* === FLOATING WHATSAPP BUTTON === */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.wa-float:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+
   </style>
 </head>
 <body>
@@ -94,8 +160,9 @@
   <img src="assets/logo.jpg" alt="TAVEN Logo">
 </header>
 
-<section class="hero">
-  Premium Pants
+<section class="hero" style="background-image:url('assets/hero.png')">
+  <h2>Premium Pants, Elevated Style</h2>
+  <p>Designed for modern professionals. Built to last.</p>
 </section>
 
 <section class="container">
@@ -103,28 +170,92 @@
 
   <div class="products">
 
-    <div class="card">
-      <img src="assets/product1.png" alt="Product 1">
-      <div class="info">
-        <h3>Signature Chino Pants</h3>
-        <div class="price">IDR 389.000</div>
-      </div>
-    </div>
+   <div class="card">
+  <img src="assets/product1.png" alt="Product 1">
 
-    <div class="card">
-      <img src="assets/product2.png" alt="Product 2">
-      <div class="info">
-        <h3>Executive Formal Pants</h3>
-        <div class="price">IDR 429.000</div>
-      </div>
-    </div>
+  <div class="info">
+    <h3>Signature Chino Pants</h3>
+    <div class="price">IDR 389.000</div>
 
+    <!-- PILIH UKURAN -->
+    <select id="size1">
+      <option>Select Size</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <!-- TOMBOL INI TARUH DI SINI -->
+    <button class="order-btn" onclick="order('Signature Chino Pants','size1')">
+      Order via WhatsApp
+    </button>
   </div>
+</div>
+
+<div class="card">
+  <img src="assets/product2.png" alt="Product 1">
+
+  <div class="info">
+    <h3>Signature Chino Pants</h3>
+    <div class="price">IDR 389.000</div>
+
+    <!-- PILIH UKURAN -->
+    <select id="size2">
+      <option>Select Size</option>
+      <option>29</option>
+      <option>30</option>
+      <option>31</option>
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <!-- TOMBOL INI TARUH DI SINI -->
+    <button class="order-btn" onclick="order('Signature Chino Pants','size1')">
+      Order via WhatsApp
+    </button>
+  </div>
+</div>
+  
+
+   </div>
 </section>
 
 <footer>
   © 2026 Alfarido5 - Gans parah
 </footer>
+
+<a
+  href="https://wa.me/62895338661112"
+  class="wa-float"
+  target="_blank"
+  aria-label="Chat via WhatsApp"
+>
+  ☎
+</a>
+
+
+<script>
+function order(product, sizeId){
+  const size = document.getElementById(sizeId).value;
+  const phone = '6280000000000';
+  const text = `Hello, I would like to order ${product}, size ${size}`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
+}
+</script>
+
+</body>
+</html>
+
 
 </body>
 </html>

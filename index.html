@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TAVEN.CO</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    header {
+      background: #111;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    header img {
+      height: 36px;
+    }
+
+    .hero {
+      height: 70vh;
+      background: url('assets/hero.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 42px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 40px;
+    }
+
+    .container h2 {
+      margin-bottom: 30px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+    .card img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 20px;
+    }
+
+    .info h3 {
+      margin: 0 0 8px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 24px;
+      margin-top: 80px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="assets/logo.jpg" alt="TAVEN Logo">
+</header>
+
+<section class="hero">
+  Premium Pants
+</section>
+
+<section class="container">
+  <h2>Signature Collection</h2>
+
+  <div class="products">
+
+    <div class="card">
+      <img src="assets/product1.png" alt="Product 1">
+      <div class="info">
+        <h3>Signature Chino Pants</h3>
+        <div class="price">IDR 389.000</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="assets/product2.png" alt="Product 2">
+      <div class="info">
+        <h3>Executive Formal Pants</h3>
+        <div class="price">IDR 429.000</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Alfarido5 - Gans parah
+</footer>
+
+</body>
+</html>

@@ -151,6 +151,30 @@
   box-shadow: 0 12px 28px rgba(0,0,0,0.35);
 }
 
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.order-btn {
+  width: 100%;
+  padding: 14px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.order-btn:hover {
+  background: #000;
+}
 
   </style>
 </head>
@@ -179,22 +203,20 @@
 
     <!-- PILIH UKURAN -->
     <select id="size1">
-      <option>Select Size</option>
+      <option value="">Select Size</option>
       <option>29</option>
       <option>30</option>
       <option>31</option>
       <option>32</option>
       <option>33</option>
       <option>34</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
     </select>
 
     <!-- TOMBOL INI TARUH DI SINI -->
-    <button class="order-btn" onclick="order('Signature Chino Pants','size1')">
-      Order via WhatsApp
-    </button>
+    <button class="order-btn"
+     onclick="order('Signature Chino Pants','size1','IDR 389.000')">
+     Order via WhatsApp
+  </button>
   </div>
 </div>
 
@@ -202,27 +224,22 @@
   <img src="assets/product2.png" alt="Product 1">
 
   <div class="info">
-    <h3>Signature Chino Pants</h3>
+    <h3>Boardshort Pants</h3>
     <div class="price">IDR 389.000</div>
 
     <!-- PILIH UKURAN -->
     <select id="size2">
-      <option>Select Size</option>
-      <option>29</option>
-      <option>30</option>
-      <option>31</option>
-      <option>32</option>
-      <option>33</option>
-      <option>34</option>
+      <option value="">Select Size</option>
       <option>M</option>
       <option>L</option>
       <option>XL</option>
     </select>
 
     <!-- TOMBOL INI TARUH DI SINI -->
-    <button class="order-btn" onclick="order('Signature Chino Pants','size1')">
-      Order via WhatsApp
-    </button>
+    <button class="order-btn"
+  	onclick="order('Executive Formal Pants','size2','IDR 429.000')">
+  	Order via WhatsApp
+  </button>
   </div>
 </div>
   
@@ -247,8 +264,33 @@
 <script>
 function order(product, sizeId){
   const size = document.getElementById(sizeId).value;
-  const phone = '6280000000000';
+  const phone = '62895338661112';
   const text = `Hello, I would like to order ${product}, size ${size}`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
+}
+</script>
+
+<script>
+function order(product, sizeId, price){
+  const size = document.getElementById(sizeId).value;
+
+  if(size === ""){
+    alert("Please select size first");
+    return;
+  }
+
+  const phone = "62895338661112"; // ganti nomor admin
+
+  const text =
+`Hello Admin TAVEN 👋
+
+I would like to order:
+Product : ${product}
+Size    : ${size}
+Price   : ${price}
+
+Thank you.`;
+
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`);
 }
 </script>

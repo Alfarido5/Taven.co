@@ -6,8 +6,11 @@
   <title>TAVEN.CO</title>
 
   <style>
-    
-
+  
+  html {
+  scroll-behavior: smooth;
+}
+  
   body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   letter-spacing: 0.2px;
@@ -62,15 +65,6 @@ header.shrink {
     rgba(0,0,0,0.25),
     rgba(0,0,0,0.65)
   );
-}
-
-.hero-content {
-  position: relative;
-  color: #fff;
-  max-width: 720px;
-  padding: 0 24px;
-<div class="scroll-indicator">Scroll</div>
-
 }
 
 .hero-brand {
@@ -145,12 +139,29 @@ header.shrink {
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    }
+     }
 
+    .card {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+    .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+     }
+
+     
     .card img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
+   width: 100%;
+   height: 280px;
+   object-fit: cover;
+   display: block;
+   cursor : zoom-in;
+   transition: transform 0.5s ease;
+   }
+
+    .card:hover img {
+    transform: scale(1.06);
     }
 
     .info {
@@ -281,6 +292,14 @@ select {
     height: 85vh;
     padding: 0 20px;
   }
+
+  .hero-content {
+  position: relative;
+  color: #fff;
+  max-width: 720px;
+  padding: 0 24px;
+  }
+
 
   .hero-content h1 {
     font-size: 32px;
@@ -476,6 +495,72 @@ select {
   cursor: zoom-in;
 }
 
+.header-social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ig-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;          /* PUTIH */
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.ig-icon:hover {
+  opacity: 1;
+}
+
+.ig-icon svg {
+  display: block;
+}
+
+.section-offset {
+  scroll-margin-top: 100px; /* tinggi header */
+}
+
+.why-card {
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.why-card:hover {
+  background: #f9f9f9;
+  transform: translateY(-6px);
+}
+
+.nav a {
+  position: relative;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.hero-cta {
+  transition: all 0.3s ease;
+}
+
+.hero-cta:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+
 </style>
 </head>
 <body>
@@ -494,31 +579,76 @@ select {
 
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-  <a href="https://wa.me/62895338661112" class="header-cta" target="_blank">
+ <div class="header-social">
+  <!-- INSTAGRAM ICON -->
+  <a
+    href="https://instagram.com/Taven.co"
+    target="_blank"
+    class="ig-icon"
+    aria-label="Instagram"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+    >
+      <rect
+        x="2.5"
+        y="2.5"
+        width="19"
+        height="19"
+        rx="5"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="4.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+      />
+      <circle
+        cx="17"
+        cy="7"
+        r="1"
+        fill="currentColor"
+      />
+    </svg>
+  </a>
+
+  <!-- ORDER BUTTON -->
+  <a
+    href="https://wa.me/62895338661112"
+    class="header-cta"
+    target="_blank"
+  >
     Order Now
   </a>
+</div>
+
 </header>
 
 <section class="hero">
   <div class="hero-overlay"></div>
-
   <div class="hero-content">
     <span class="hero-brand">TAVEN</span>
     <h1>Premium Pants for Modern Men</h1>
     <p>Designed with precision. Built for everyday confidence.</p>
-
-    <a href="#collection" class="hero-cta">
+      <a href="#collection" class="hero-cta">
       Explore Collection
     </a>
+    <div class="scroll-indicator">Scroll</div>
   </div>
 </section>
 
-<section class="container">
+<section class="container section-offset" id="collection">
   <h2>Signature Collection</h2>
 
   <div class="products">
 
-   <div class="card">
+   <div class="card why-card">
    <img src="assets/product1.png" alt="Product 1" onclick="openImage(this.src)">
 
 
@@ -576,8 +706,9 @@ select {
    </div>
 </section>
 
-<section class="container">
+<section class="container section-offset" id="why">
   <h2>Why TAVEN</h2>
+
 
   <div class="products">
     <div class="card">
@@ -604,7 +735,7 @@ select {
 </section>
 
 
-<footer>
+<footer id="contact">
   © 2026 Alfarido5 - Gans parah
 </footer>
 

@@ -56,7 +56,12 @@ header.shrink {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.65)
+  );
 }
 
 .hero-content {
@@ -64,6 +69,8 @@ header.shrink {
   color: #fff;
   max-width: 720px;
   padding: 0 24px;
+<div class="scroll-indicator">Scroll</div>
+
 }
 
 .hero-brand {
@@ -181,30 +188,31 @@ header.shrink {
 
 /* ==== TOMBOl TAVEN === */
      
-  .order-btn {
+.order-btn {
   width: 100%;
   padding: 14px;
   margin-top: 12px;
-  background: #111;
-  color: #fff;
-  border: none;
   border-radius: 8px;
+  border: none;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  cursor: pointer;
+  background: #111;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.4;
   transition: all 0.3s ease;
 }
 
-.order-btn:hover {
+.order-btn.active {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.order-btn.active:hover {
   background: #000;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-}
-
-.order-btn:active {
-  transform: translateY(0);
-  box-shadow: none;
 }
 
 
@@ -254,9 +262,14 @@ select {
   cursor: pointer;
 }
 
-.order-btn:hover {
-  background: #000;
+.order-btn.active {
+  background: linear-gradient(135deg, #111, #000);
 }
+
+.order-btn.active:hover {
+  box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+}
+
 
 /* MOBILE OPTIMIZATION */
 @media (max-width: 768px) {
@@ -322,12 +335,168 @@ select {
   box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 }
 
-  </style>
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(17,17,17,0.75);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  height: 34px;
+}
+
+.tagline {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #aaa;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 16px;
+  font-size: 14px;
+}
+
+.header-cta {
+  padding: 10px 22px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.header-cta:hover {
+  background: #fff;
+  color: #000;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* MOBILE HEADER */
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: rgba(17,17,17,0.95);
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .nav a {
+    margin: 12px 0;
+    font-size: 16px;
+  }
+
+  .nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .header-cta {
+    display: none;
+  }
+}
+
+.scroll-indicator {
+  margin-top: 60px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  animation: bounce 1.8s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.card img {
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* === IMAGE MODAL === */
+.img-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.img-modal img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.img-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.card img {
+  cursor: zoom-in;
+}
+
+</style>
 </head>
 <body>
 
-<header>
-  <img src="assets/logo.jpg" alt="TAVEN Logo">
+<header class="site-header">
+  <div class="logo">
+    <img src="assets/logo.jpg" alt="TAVEN Logo">
+    <span class="tagline">Elevated Essentials</span>
+  </div>
+
+  <nav class="nav">
+    <a href="#collection">Collection</a>
+    <a href="#why">Why TAVEN</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <a href="https://wa.me/62895338661112" class="header-cta" target="_blank">
+    Order Now
+  </a>
 </header>
 
 <section class="hero">
@@ -350,7 +519,8 @@ select {
   <div class="products">
 
    <div class="card">
-  <img src="assets/product1.png" alt="Product 1">
+   <img src="assets/product1.png" alt="Product 1" onclick="openImage(this.src)">
+
 
   <div class="info">
     <h3>Signature Chino Pants</h3>
@@ -368,15 +538,18 @@ select {
   <option>34</option>
 </select>
 
-<button id="btn1" class="order-btn" onclick="order('Signature Chino Pants','size1')" disabled>
+<button id="btn1" class="order-btn"
+  onclick="order('Signature Chino Pants','size1','IDR 389.000')" disabled>
   Order via WhatsApp
 </button>
+
 
   </div>
 </div>
 
-<div class="card">
-  <img src="assets/product2.png" alt="Product ">
+  <div class="card">
+  <img src="assets/product2.png" alt="Product 2" onclick="openImage(this.src)">
+
 
   <div class="info">
     <h3>Boardshort Pants</h3>
@@ -391,7 +564,8 @@ select {
 
 </select>
 
-<button id="btn2" class="order-btn" onclick="order('Boardshort Pants','size2')" disabled>
+<button id="btn2" class="order-btn"
+  onclick="order('Boardshort Pants','size2','IDR 389.000')" disabled>
   Order via WhatsApp
 </button>
 
@@ -433,6 +607,12 @@ select {
 <footer>
   © 2026 Alfarido5 - Gans parah
 </footer>
+
+<!-- IMAGE MODAL -->
+<div id="imageModal" class="img-modal">
+  <span class="img-close" onclick="closeImage()">×</span>
+  <img id="modalImg" src="" alt="Preview">
+</div>
 
 <a
   href="https://wa.me/62895338661112"
@@ -489,6 +669,33 @@ window.addEventListener("scroll", function () {
     header.classList.add("shrink");
   } else {
     header.classList.remove("shrink");
+  }
+});
+</script>
+
+<script>
+function toggleMenu() {
+  document.querySelector(".nav").classList.toggle("active");
+}
+</script>
+
+<script>
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+
+function openImage(src) {
+  modalImg.src = src;
+  modal.style.display = "flex";
+}
+
+function closeImage() {
+  modal.style.display = "none";
+}
+
+// klik area hitam = close
+modal.addEventListener("click", function (e) {
+  if (e.target !== modalImg) {
+    closeImage();
   }
 });
 </script>

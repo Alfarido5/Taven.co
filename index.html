@@ -163,6 +163,94 @@ header.shrink {
    transition: transform 0.5s ease;
    }
 
+   .product-slider {
+  width: 100%;
+  height: 280px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.product-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+}
+
+.slides img {
+  flex: 0 0 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: center;
+  transition: transform 0.4s ease;
+}
+
+/* variasi visual palsu tapi kelihatan beda */
+.slides img.zoom {
+  transform: scale(1.08);
+}
+
+.slides img.crop {
+  object-position: center top;
+}
+
+.slides img.mirror {
+  transform: scaleX(-1);
+}
+
+/* === PRODUCT SLIDER === */
+.product-slider {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.product-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+}
+
+.slides img {
+  flex: 0 0 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: center;
+}
+
+/* fake angle variations */
+.slides img.zoom {
+  transform: scale(1.06);
+}
+
+.slides img.crop {
+  object-position: center top;
+}
+
+/* DOT INDICATOR */
+.dots {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
     .card:hover img {
     transform: scale(1.06);
     }
@@ -642,7 +730,6 @@ select {
       <a href="#collection" class="hero-cta">
       Explore Collection
     </a>
-    <div class="scroll-indicator">Scroll</div>
   </div>
 </section>
 
@@ -652,12 +739,18 @@ select {
   <div class="products">
 
    <div class="card why-card">
-   <img src="assets/product1.png" alt="Product 1" onclick="openImage(this.src)">
-
+   <div class="product-slider">
+  <div class="slides">
+    <img src="assets/product1.png" alt="Product view 1">
+    <img src="assets/product1.png" class="zoom" alt="Product view 2">
+    <img src="assets/product1.png" class="crop" alt="Product view 3">
+    <img src="assets/product1.png" class="mirror" alt="Product view 4">
+  </div>
+</div>
 
   <div class="info">
     <h3>Signature Chino Pants</h3>
-    <div class="price">IDR 389.000</div>
+    <div class="price">IDR 129.000</div>
 
     <!-- PILIH UKURAN -->
     <select id="size1" onchange="enableOrder('size1','btn1')">
@@ -672,7 +765,7 @@ select {
 </select>
 
 <button id="btn1" class="order-btn"
-  onclick="order('Signature Chino Pants','size1','IDR 389.000')" disabled>
+  onclick="order('Signature Chino Pants','size1','IDR 129.000')" disabled>
   Order via WhatsApp
 </button>
 
@@ -681,12 +774,27 @@ select {
 </div>
 
   <div class="card">
-  <img src="assets/product2.png" alt="Product 2" onclick="openImage(this.src)">
+ <div class="product-slider">
+
+  <div class="slides">
+    <img src="assets/product2.png" alt="Product view 1">
+    <img src="assets/product2.png" class="zoom" alt="Product view 2">
+    <img src="assets/product2.png" class="crop" alt="Product view 3">
+  </div>
+
+  <div class="dots">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+</div>
+
 
 
   <div class="info">
     <h3>Boardshort Pants</h3>
-    <div class="price">IDR 389.000</div>
+    <div class="price">IDR 100.000</div>
 
     <!-- PILIH UKURAN -->
     <select id="size2" onchange="enableOrder('size2','btn2')">
@@ -698,7 +806,7 @@ select {
 </select>
 
 <button id="btn2" class="order-btn"
-  onclick="order('Boardshort Pants','size2','IDR 389.000')" disabled>
+  onclick="order('Boardshort Pants','size2','IDR 100.000')" disabled>
   Order via WhatsApp
 </button>
 

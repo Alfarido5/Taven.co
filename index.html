@@ -651,6 +651,62 @@ select {
   transform: translateY(-2px);
 }
 
+    .floating-group {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* tombol utama */
+.wa-float {
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  text-decoration: none;
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* icon tambahan */
+.float-item {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+.float-item img {
+  width: 20px;
+}
+
+/* animasi muncul */
+.floating-group:hover .shopee {
+  transform: translateY(-70px);
+  opacity: 1;
+}
+
+.floating-group:hover .tiktok {
+  transform: translateY(-130px);
+  opacity: 1;
+}
 
 </style>
 </head>
@@ -855,15 +911,23 @@ select {
   <span class="img-close" onclick="closeImage()">×</span>
   <img id="modalImg" src="" alt="Preview">
 </div>
+<div class="floating-group">
+  <!-- SHOPEE -->
+  <a href="https://shopee.co.id/username_kamu" target="_blank" class="float-item shopee">
+    <img src="assets/shopee.svg" alt="Shopee">
+  </a>
 
-<a
-  href="https://wa.me/62895338661112"
-  class="wa-float"
-  target="_blank"
-  aria-label="Chat via WhatsApp"
->
-  ☎
-</a>
+  <!-- TIKTOK -->
+  <a href="https://tiktok.com/@username_kamu" target="_blank" class="float-item tiktok">
+    <img src="assets/tiktok.svg" alt="TikTok">
+  </a>
+
+  <!-- WHATSAPP (UTAMA) -->
+  <a href="https://wa.me/62895338661112" target="_blank" class="wa-float">
+    ☎
+  </a>
+
+</div>
 
 <script>
 function enableOrder(selectId, buttonId) {
